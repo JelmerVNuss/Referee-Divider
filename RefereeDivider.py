@@ -51,14 +51,14 @@ for referee in referees:
         if match.homeTeam.level in referee.preferences:
             onlyPreferredMatches[referee].append(match)
 
-for referee in referees:
-    print(referee.name)
-    print("possible matches")
-    for p in possibleMatches[referee]:
-        print(p)
-    print("preferred matches only")
-    for p in onlyPreferredMatches[referee]:
-        print(p)
+# for referee in referees:
+#     print(referee.name)
+#     print("possible matches")
+#     for p in possibleMatches[referee]:
+#         print(p)
+#     print("preferred matches only")
+#     for p in onlyPreferredMatches[referee]:
+#         print(p)
 
 
 matchesCoveredInPossibleMatches = set()
@@ -73,9 +73,23 @@ for referee in referees:
         matchesCoveredInPreferredMatches.add(match)
 matchesNotCoveredInPreferredMatches = set(toScheduleMatches) - matchesCoveredInPreferredMatches
 
-print("Not covered in possible matches:")
-for match in matchesNotCoveredInPossibleMatches:
+# print("Not covered in possible matches:")
+# for match in matchesNotCoveredInPossibleMatches:
+#     print(match)
+# print("Not covered in preferred matches:")
+# for match in matchesNotCoveredInPreferredMatches:
+#     print(match)
+
+# print("available referees per match")
+# for match in toScheduleMatches:
+#     print(match)
+#     for referee in referees:
+#         if match in onlyPreferredMatches[referee]:
+#             print(referee.name)
+
+print("available referees per match")
+for match in toScheduleMatches:
     print(match)
-print("Not covered in preferred matches:")
-for match in matchesNotCoveredInPreferredMatches:
-    print(match)
+    for referee in referees:
+        if match in possibleMatches[referee]:
+            print(referee.name)
