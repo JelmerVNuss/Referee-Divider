@@ -49,8 +49,11 @@ class MatchScraper:
         startTime = data[4].text
         startTime = datetime.strptime(startTime, '%H:%M').time()
 
-        meetingTime = data[3].text
-        meetingTime = datetime.strptime(meetingTime, '%H:%M').time()
+        try:
+            meetingTime = data[3].text
+            meetingTime = datetime.strptime(meetingTime, '%H:%M').time()
+        except:
+            meetingTime = startTime
 
         meetingDateTime = datetime.combine(startDate, meetingTime)
         startDateTime = datetime.combine(startDate, startTime)
